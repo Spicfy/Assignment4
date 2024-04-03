@@ -1,33 +1,50 @@
+
 public class ITIStringBuffer {
-    private SinglyLinkedList<String> stringy;
+
+    private SinglyLinkedList<Character> list;
+    //private char[] x;
+    private int num=0;
+    
 
     public ITIStringBuffer() {
-         stringy = new SinglyLinkedList<String>();
+        //throw new UnsupportedOperationException( "replace with your implementation" );
+        list = new SinglyLinkedList<Character>();
     }
 
     public ITIStringBuffer(String  firstString){
-        stringy = new SinglyLinkedList<>();
-        stringy.add(firstString);
+        //throw new UnsupportedOperationException( "replace with your implementation" );
+        list = new SinglyLinkedList<Character>();
+        char[] c = firstString.toCharArray();
+        for (char d : c) {
+            list.add(d);
+            num++;
+            
+        }
+        
     }
 
     public void append(String nextString){
-        stringy.add(nextString);
+        //throw new UnsupportedOperationException( "replace with your implementation" );
+        char[] c = nextString.toCharArray();
+        for (char d : c) {
+            list.add(d);
+            num++;
+            
+        }
+        
+
     }
 
     public String toString(){
-        Iterator <String> it = stringy.iterator();
-        String res = "";
-        while(it.hasNext()){
-            res += it.next();
-        }
-        return res;
+        //throw new UnsupportedOperationException( "replace with your implementation" );
+    char [] c = new char[num];
+    int i = 0;
+    for (char x :list) {
+        c[i] = x;
+        i++;
+        
     }
-    public static void main(String[] args) {
-        ITIStringBuffer sb = new ITIStringBuffer();
-        sb.append("marco");
-        sb.append(" polo");
-        sb.append("!");
-        System.out.println(sb.toString());
+    return new String(c);
     }
 
 }
