@@ -5,7 +5,7 @@ public class SinglyLinkedList<E> implements List<E>, Iterable<E> {
     public int count(E fromElement, E toElement) {
         int traverse = 1;
         Node<E> p;
-        if(fromElement == null || toElement == null){
+        if(fromElement == null){
             return 0;
         }
         if (!fromElement.equals(toElement)) {
@@ -339,4 +339,3 @@ public class SinglyLinkedList<E> implements List<E>, Iterable<E> {
         return res.toString();
     }
 }
-
