@@ -38,15 +38,28 @@ public class SinglyLinkedList<E> implements List<E>, Iterable<E> {
     }
     private int count(Node<E> p, E fromElement, E toElement, int count){
             boolean ans = (p.value.equals(toElement));
+            boolean found = false;
             Node tmp = head;
-            E test = fromElement;
+            
             if(!ans){
                 if(count >=size()){ // Element toElement not found
                     return size();
                 }
                 if(p == tail){
-                    p = head;
-                    count--;
+                    while(tmp != null){
+                        if(tmp.value.equals(toElement)){
+                            found = true;
+                            break;
+                        }
+                        tmp = tmp.next;
+                    }
+                    if(!found){
+                        return count;
+                    }
+                    else{
+                        p = head;
+                        count--;
+                    }
                 }
                 else{
                     p = p.next;
@@ -326,3 +339,4 @@ public class SinglyLinkedList<E> implements List<E>, Iterable<E> {
         return res.toString();
     }
 }
+
