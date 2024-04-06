@@ -3,36 +3,55 @@ import java.util.*;
 public class SinglyLinkedList<E> implements List<E>, Iterable<E> {
 
     public int count(E fromElement, E toElement) {
-        int traverse = 0;
-        Node<E> tmp = head.next;
+        int traverse = 1;
+        Node<E> p;
+        if(fromElement == null || toElement == null){
+            return 0;
+        }
         if (!fromElement.equals(toElement)) {
+            Node<E> tmp = head;
             while (!tmp.value.equals(fromElement)) {
-                if(tmp.next == null && !tmp.value.equals(fromElement)){
+                tmp = tmp.next;
+                if(tmp == null){
                     return 0;
                 }
-                tmp = tmp.next;
             }
+            if(tmp.next == null){
+                p = head;
+                traverse--;
+            }
+            else{
+                p  = tmp.next; // Update the type of p to Node<E>
+            }    
+            
+
 
             traverse++;
-            return count(tmp.next, tmp.next.value, toElement, traverse);
+            return  count(p, fromElement, toElement, traverse);
         }
-        else if(tmp.next == null){
-            return 0;
+        else if(fromElement.equals(toElement)){
+            return 1;
         } 
         else{
             return 0;
         }
     }
-    private int count(Node<E>p, E fromElement, E toElement, int count){
-        boolean ans = (fromElement.equals(toElement));
+    private int count(Node<E> p, E fromElement, E toElement, int count){
+            boolean ans = (p.value.equals(toElement));
+            Node tmp = head;
+            E test = fromElement;
             if(!ans){
-                p = p.next;
-                fromElement = p.value;
-                count ++;
-                return count(p, fromElement, toElement, count);
-            }
-            else if(p.next == null && !ans){
-                return 0;
+                if(count >=size()){ // Element toElement not found
+                    return size();
+                }
+                if(p == tail){
+                    p = head;
+                    count--;
+                }
+                else{
+                    p = p.next;
+                }
+                return count(p,fromElement, toElement, count + 1);
             }
             else{
                 return count;
